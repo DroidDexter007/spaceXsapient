@@ -1,0 +1,160 @@
+.parentDOM {
+  display: flex;
+  background-color: #f1f1f1;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.eachcard img {
+  align-self: center;
+  background-color: #f1f1f1;
+  max-width: 100%;
+  height: 157px;
+}
+
+.eachcard {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  margin: 12px;
+  background-color: #fff;
+  align-items: flex-start;
+  width: 14%;
+}
+
+.eachcard h5 {
+  margin: 10px 0 5px 0;
+}
+
+.eachcard div span {
+  font-size: 12px;
+}
+
+.eachcard div span:first-child {
+  font-weight: 500 !important;
+}
+
+.eachcard div span:nth-child(2) {
+  color: rgb(39, 122, 218);
+}
+
+.container {
+  flex: 15;
+}
+
+.loader {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(187, 187, 187, 0.295);
+  background: url('../../assets/images/loader.gif') no-repeat center;
+  background-size: 120px;
+  position: absolute;
+
+}
+
+/* sidebar css */
+.sidebar-container {
+  /* width: 145px; */
+  padding: 0 20px;
+  flex: 2;
+}
+
+.sidebar-container ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  justify-content: space-between;
+}
+
+.sidebar-container ul li {
+  list-style: none;
+  padding: 0.15rem 0.5rem;
+  margin: 0.5rem;
+  border-radius: 5px;
+  background-color: #c5e09b;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.sidebar-container ul li.active {
+  background-color: #7cb904;
+}
+
+.sidebar-container h5 {
+  margin: 0 10%;
+  padding: 5px 0 0 0;
+  text-align: center;
+  border-bottom: 1px solid #b9b7b7;
+  color: #2f2f2f;
+
+  font-weight: 100;
+  font-size: 13px;
+}
+
+.nodata-found {
+  width: 80vw;
+  height: 100vh;
+  top: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (min-width :1025px) and (max-width:1440px) {}
+
+
+@media only screen and (min-width :700px) and (max-width:1024px) {
+  .sidebar-container {
+    min-width: 150px;
+  }
+
+  .eachcard {
+    align-items: flex-start;
+    width: 30%;
+  }
+
+  .card-container {
+    justify-content: center;
+  }
+}
+
+
+@media only screen and (max-width: 699px) {
+  .parentDOM {
+    flex-direction: column;
+  }
+
+  .year-container,
+  .launch-container,
+  .landing-container {
+    width: 42%;
+    align-self: center;
+    margin: 0 auto;
+  }
+
+  .sidebar-container ul li {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 25%;
+  }
+
+  .sidebar-container {
+    justify-content: space-evenly;
+  }
+
+  .card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .eachcard {
+    background-color: #fff;
+    max-width: none;
+    width: 62%;
+  }
+}

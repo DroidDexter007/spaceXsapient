@@ -1,0 +1,44 @@
+<div class="parentDOM">
+
+
+  <div class="sidebar-container">
+    <h4>Filters</h4>
+    <div class="year-container">
+      <h5 class="filter-title">Launch Year</h5>
+      <ul>
+        <li *ngFor="let year of yearList" [ngClass]="{'active':filterOptions.qYear == year}" (click)="getYear(year)">
+          {{year}}</li>
+      </ul>
+    </div>
+    <div class="launch-container">
+      <h5 class="filter-title">Successful Launch </h5>
+      <ul>
+        <li *ngFor="let launch of launchSuccess" [ngClass]="{'active':filterOptions.qLaunch == (launch | lowercase)}"
+          (click)="getLaunch(launch)">{{launch}}</li>
+      </ul>
+    </div>
+    <div class="landing-container">
+      <h5 class="filter-title">Successful Landing</h5>
+      <ul>
+        <li *ngFor="let landing of landingSuccess" [ngClass]="{'active':filterOptions.qLand == (landing | lowercase)}"
+          (click)="getLanding(landing)">{{landing}}</li>
+      </ul>
+    </div>
+  </div>
+  <!-- cards -->
+  <div class="container">
+    <div *ngIf="loaderStatus" class="loader"></div>
+    <div *ngIf="launches.length == 0" class="nodata-found">No Data Found !!</div>
+    <div class="card-container">
+      <div class="eachcard" *ngFor="let launch of launches">
+        <img src={{launch.links.mission_patch_small}} alt="" srcset="">
+        <h5>{{launch.mission_name}} #{{launch.flight_number}}</h5>
+        <div><span>Mission Ids: </span><span>{{launch.mission_id}}</span></div>
+        <div><span>Launch Year:</span><span>{{launch.launch_year}}</span></div>
+        <div><span>Successful Launch:</span><span>{{launch.launch_success}}</span></div>
+        <div><span>Successful Landing:</span><span>{{launch.land_success}}</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
