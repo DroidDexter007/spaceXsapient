@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit {
         this.currentYear = this.filterOptions.qYear;
         this.spxservice.getDataOnFilter(this.filterOptions.qLaunch, this.filterOptions.qLand, this.filterOptions.qYear).subscribe((newdata) => {
           this.launches = newdata;
-          console.log('newdata-->', newdata);
+          // console.log('newdata-->', newdata);
           this.loaderStatus = false;
 
         })
@@ -75,8 +75,6 @@ export class DashboardComponent implements OnInit {
       queryParams: { 'launch_year': year },
       queryParamsHandling: 'merge'
     })
-
-    console.log("clicked year", this.currentYear);
   }
 
   getLaunch(launch: string) {
@@ -86,8 +84,6 @@ export class DashboardComponent implements OnInit {
       queryParams: { 'launch_success': launch.toLowerCase() },
       queryParamsHandling: 'merge'
     })
-    console.log(launch, this.currLanuchStatus);
-
   }
 
   getLanding(landing: string) {
@@ -96,8 +92,7 @@ export class DashboardComponent implements OnInit {
     this.router.navigate([], {
       queryParams: { 'land_success': landing.toLowerCase() },
       queryParamsHandling: 'merge'
-    })
-    console.log(landing, this.currLandingStatus);
+    }) 
   }
 
   listOfYear(startYear) {
