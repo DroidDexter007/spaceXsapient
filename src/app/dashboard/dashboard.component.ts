@@ -30,15 +30,14 @@ export class DashboardComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private spxservice: SpacexService,
-    private title: Title,
     private meta: Meta
   ) { }
 
   ngOnInit(): void {
     this.yearList = this.listOfYear(2006);
     this.getFilteredData();
-
-
+     this.meta.addTag({keywords:'spacex, spacex launch, Elon, Elon Musk, rocket, rocket launch, moon mission, mars mission'})
+     this.meta.addTag({description:'This website gives insight and details about all launch programs at spacex.'})
   }
 
   getFilteredData() {
@@ -75,7 +74,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  
+
   listOfYear(startYear) {
     let yearsList = [];
     startYear = startYear || 2006;
