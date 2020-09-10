@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   loaderStatus: boolean = true;
   // sidebar code
   yearList = [];
+  dataCheck = false;
   filterOptions = {
     qYear: '',
     qLaunch: '',
@@ -35,9 +36,12 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.yearList = this.listOfYear(2006);
-    this.getFilteredData();
-     this.meta.addTag({keywords:'spacex, spacex launch, Elon, Elon Musk, rocket, rocket launch, moon mission, mars mission'})
-     this.meta.addTag({description:'This website gives insight and details about all launch programs at spacex.'})
+    setTimeout(() => {
+      this.getFilteredData();
+    })
+
+    this.meta.addTag({ keywords: 'spacex, spacex launch, Elon, Elon Musk, rocket, rocket launch, moon mission, mars mission' })
+    this.meta.addTag({ description: 'This website gives insight and details about all launch programs at spacex.' })
   }
 
   getFilteredData() {
@@ -57,11 +61,12 @@ export class DashboardComponent implements OnInit {
         this.currLandingStatus = this.filterOptions.qLand;
         this.currLanuchStatus = this.filterOptions.qLaunch;
         this.currentYear = this.filterOptions.qYear;
-        this.spxservice.getDataOnFilter(this.filterOptions.qLaunch, this.filterOptions.qLand, this.filterOptions.qYear).subscribe((newdata) => {
-          this.launches = newdata;
-          // console.log('newdata-->', newdata);
+        this.spxservice.getDataOnFilter(this.filterOptions.qLaunch, this.filterOptions.qLand, this.filterOptions.qYear).subscribe((filtertedData) => {
+          this.launches = filtertedData;
+          if (filtertedData.length == 0) {
+            this.dataCheck = true;
+          } else { this.dataCheck = false; }
           this.loaderStatus = false;
-
         })
       }
 
@@ -72,6 +77,9 @@ export class DashboardComponent implements OnInit {
         this.loaderStatus = false;
       })
     }
+
+
+
   }
 
 
@@ -87,7 +95,7 @@ export class DashboardComponent implements OnInit {
 
   getYear(year: string) {
     this.filterOptions.qYear = year;
-    this.router.navigate([], {
+    this.router.navigate(['/'], {
 
       queryParams: { 'launch_year': year },
       queryParamsHandling: 'merge'
@@ -96,7 +104,7 @@ export class DashboardComponent implements OnInit {
 
   getLaunch(launch: string) {
     this.filterOptions.qLaunch = launch
-    this.router.navigate([], {
+    this.router.navigate(['/'], {
 
       queryParams: { 'launch_success': launch },
       queryParamsHandling: 'merge'
@@ -104,9 +112,8 @@ export class DashboardComponent implements OnInit {
   }
 
   getLanding(landing: string) {
-    // this.currLandingStatus = landing;
     this.filterOptions.qLand = landing;
-    this.router.navigate([], {
+    this.router.navigate(['/'], {
       queryParams: { 'land_success': landing },
       queryParamsHandling: 'merge'
     })

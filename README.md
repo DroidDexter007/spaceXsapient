@@ -1,3 +1,8 @@
+# Server Side rendering
+I have implemented server side rendering for for this application adn added necessary keywords and decription for the page which will help in better SEO of this application.
+The added keywordsa are 'spacex, spacex launch, Elon, Elon Musk, rocket, rocket launch, moon mission, mars mission' and the description is 'This website gives insight and details about all launch programs at spacex'.
+
+
 # SpaceXSapient
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.3.
