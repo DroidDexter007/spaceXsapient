@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SpacexService } from './../services/spacex.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Title, Meta } from '@angular/platform-browser';
 
 
 @Component({
@@ -22,25 +23,31 @@ export class DashboardComponent implements OnInit {
   currentYear: string;
   currLanuchStatus: string;
   currLandingStatus: string;
-  launchSuccess = ['True', 'False'];
-  landingSuccess = ['True', 'False'];
+  launchSuccess = ['true', 'false'];
+  landingSuccess = ['true', 'false'];
 
-  constructor(private router: Router, private route: ActivatedRoute, private spxservice: SpacexService) { }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private spxservice: SpacexService,
+    private title: Title,
+    private meta: Meta
+  ) { }
 
   ngOnInit(): void {
     this.yearList = this.listOfYear(2006);
     this.getFilteredData();
+
+
   }
 
   getFilteredData() {
     this.route.queryParamMap.subscribe((queryParams) => {
       if (queryParams.has('launch_success')) {
         this.filterOptions.qLaunch = queryParams.get('launch_success');
-
       }
       if (queryParams.has('land_success')) {
         this.filterOptions.qLand = queryParams.get('land_success');
-
       }
       if (queryParams.has('launch_year')) {
         this.filterOptions.qYear = queryParams.get('launch_year');
@@ -68,6 +75,17 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  
+  listOfYear(startYear) {
+    let yearsList = [];
+    startYear = startYear || 2006;
+    let currentYear = new Date().getFullYear();
+    while (startYear <= currentYear) {
+      yearsList.push(startYear++);
+    }
+    return yearsList;
+  }
+
   getYear(year: string) {
     this.filterOptions.qYear = year;
     this.router.navigate([], {
@@ -81,7 +99,7 @@ export class DashboardComponent implements OnInit {
     this.filterOptions.qLaunch = launch
     this.router.navigate([], {
 
-      queryParams: { 'launch_success': launch.toLowerCase() },
+      queryParams: { 'launch_success': launch },
       queryParamsHandling: 'merge'
     })
   }
@@ -90,19 +108,11 @@ export class DashboardComponent implements OnInit {
     // this.currLandingStatus = landing;
     this.filterOptions.qLand = landing;
     this.router.navigate([], {
-      queryParams: { 'land_success': landing.toLowerCase() },
+      queryParams: { 'land_success': landing },
       queryParamsHandling: 'merge'
-    }) 
+    })
   }
 
-  listOfYear(startYear) {
-    let yearsList = [];
-    startYear = startYear || 2006;
-    let currentYear = new Date().getFullYear();
-    while (startYear <= currentYear) {
-      yearsList.push(startYear++);
-    }
-    return yearsList;
-  }
+
 
 }

@@ -13,15 +13,15 @@
     <div class="launch-container">
       <h5 class="filter-title">Successful Launch </h5>
       <ul>
-        <li *ngFor="let launch of launchSuccess" [ngClass]="{'active':filterOptions.qLaunch == (launch | lowercase)}"
-          (click)="getLaunch(launch)">{{launch}}</li>
+        <li *ngFor="let launch of launchSuccess" [ngClass]="{'active':filterOptions.qLaunch == launch}"
+          (click)="getLaunch(launch)">{{launch | titlecase}}</li>
       </ul>
     </div>
     <div class="landing-container">
       <h5 class="filter-title">Successful Landing</h5>
       <ul>
-        <li *ngFor="let landing of landingSuccess" [ngClass]="{'active':filterOptions.qLand == (landing | lowercase)}"
-          (click)="getLanding(landing)">{{landing}}</li>
+        <li *ngFor="let landing of landingSuccess" [ngClass]="{'active':filterOptions.qLand == landing}"
+          (click)="getLanding(landing)">{{landing | titlecase}}</li>
       </ul>
     </div>
   </div>
